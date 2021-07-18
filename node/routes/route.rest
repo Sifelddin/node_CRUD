@@ -1,0 +1,22 @@
+GET http://localhost:3000/subscribers
+
+###
+
+GET http://localhost:3000/subscribers/60f4292e8812aa201cf9065e
+
+###
+POST http://localhost:3000/subscribers
+
+
+###
+
+DELETE http://localhost:3000/subscribers/60f41e74641ab311b87d85e6
+
+###
+
+PATCH http://localhost:3000/subscribers/60f4292e8812aa201cf9065e
+Content-Type: application/json
+
+{
+     "name" : "ali"
+}
