@@ -1,7 +1,15 @@
 const mongoose = require('mongoose')
 
 const subscriberSchema = new mongoose.Schema({
-    name: {
+    nom: {
+        type: String,
+        required: true
+    },
+    prenom: {
+        type: String,
+        required: true
+    },
+    dateN: {
         type: String,
         required: true
     },
@@ -9,7 +17,7 @@ const subscriberSchema = new mongoose.Schema({
     subscribeDate: {
         type: Date,
         required: true,
-        default:Date.now
+        default:new Date
     }
 })
 

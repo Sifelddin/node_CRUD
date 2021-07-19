@@ -1,14 +1,24 @@
 const express = require('express')
 const Subscriber = require('../models/subscriber')
 const router = express.Router()
-
+const path = require('path');
 
 
 //all subscribers
 router.get('/', async (req, res) => {
     try {
-        const subscribers = await Subscriber.find()
-        res.send(subscribers)
+        const subscribers = await Subscriber.find() 
+    
+       res.render('Tableau', {subscribers : subscribers})
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+    
+})
+router.get('/new', async (req, res) => {
+    try {
+        const subscribers = await Subscriber.find() 
+       res.render('Contact')
     } catch (err) {
         res.status(500).json({ message: err.message })
     }
@@ -17,16 +27,18 @@ router.get('/', async (req, res) => {
 
 //one subscriber
 router.get('/:id', getsubscriber, (req, res) => {
-    console.log(res.subscriber);
   res.send(res.subscriber)
 })
 
 router.post('/', async (req, res) => {
    console.log(req.body) 
+   
     const subscriber = new Subscriber ({
-        name: req.body.nom,
-    
+        nom: req.body.nom,  
+        prenom: req.body.prenom,  
+        dateN: req.body.dateN,  
     })
+    
     try {
         const newsubscriber = await subscriber.save()
         res.status(201).json(newsubscriber)
@@ -36,11 +48,11 @@ router.post('/', async (req, res) => {
     }
 })
 router.patch('/:id', getsubscriber,async (req, res) => {
-    if (req.body.name != null) {
-        res.subscriber.name = req.body.name
+    if (req.body.nom != null) {
+        res.subscriber.nom = req.body.nom
     }
-    if (req.body.subscribedToChannel != null) {
-        res.subscriber.subscribedToChannel = req.body.subscribedToChannel
+    if (req.body.prenom != null) {
+        res.subscriber.prenom = req.body.prenom
     }
     try {
         const updatedSubscriber = await res.subscriber.save()
@@ -57,6 +69,9 @@ router.delete('/:id',getsubscriber,async (req, res) => {
         res.status(500).json({message: err.message})
    }
 })
+
+
+
 
 
 async function getsubscriber(req, res, next) {

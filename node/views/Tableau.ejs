@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>PAGE TABLEAU</title>
+
+    
+</head>
+<body>
+    
+    <div class="d-lg-flex justify-content-between align-items-center  d-none ">
+        <h1 class="fw-bold h1 display-4 text-end mr-5 "> tout le jardin</h1>
+    </div>
+    <nav class="navbar navbar-expand-md navbar-light  bg-light">
+        <a class="navbar-brand text-dark" href="index.html">jarditou.com</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link text-muted" href="index.ejs">Accueil <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="/subscribers">Tableau</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-muted" href="/subscribers/new">Contact</a>
+            </li>
+          </ul>
+          <form class="form-inline mt-2 mt-md-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Votre Promotion" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+          </form>
+        </div>
+      </nav>  
+   
+        <div class="container">
+        <div class="table-responsive-md">
+         <table class="table table-bordered table-sm">
+        <thead class="bg-light h5 display-5">
+            <tr>           
+            <th> ID </th>
+             <th>   nom </th>
+             <th> prenom </th>
+            <th> dateN </th>
+            <th> subscribeDate </th>
+        </tr> 
+        </thead>
+        <tbody class="tbody">
+        <% subscribers.forEach(el =>{ %>
+           <tr>
+             <td><a href="/subscribers/<%=el._id %>"><%=el._id %></a></td>
+             <td><%= el.nom %></td>
+             <td><%= el.prenom %></td>
+             <td><%= el.dateN %></td>
+             <td><%= el.subscribeDate.toLocaleDateString() %></td>
+          </tr>
+       <% }) %>
+        </tbody>
+    </table>
+</div>
+   <button class="btn btn-primary">delete</button>
+</div>
+
+<footer class="navbar navbar-expand-sm mx-sm-auto  navbar-dark bg-dark  ">
+    <ul class="navbar-nav  mx-auto mr-sm-auto ml-sm-0">
+        <li class="nav-item ">
+          <a class="nav-link text-muted text-light " href="#">mentions légales </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-muted text-light align-self-center" href="#">horaires</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-muted text-light text-sm-center" href="#">plan du site</a>
+        </li>
+      </ul>
+</footer>
+</body>
+</html>
