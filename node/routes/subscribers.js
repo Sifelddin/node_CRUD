@@ -8,7 +8,6 @@ const path = require('path');
 router.get('/', async (req, res) => {
     try {
         const subscribers = await Subscriber.find() 
-    
        res.render('Tableau', {subscribers : subscribers})
     } catch (err) {
         res.status(500).json({ message: err.message })
@@ -17,7 +16,7 @@ router.get('/', async (req, res) => {
 })
 router.get('/new', async (req, res) => {
     try {
-        const subscribers = await Subscriber.find() 
+        
        res.render('Contact')
     } catch (err) {
         res.status(500).json({ message: err.message })
@@ -26,12 +25,17 @@ router.get('/new', async (req, res) => {
 })
 
 //one subscriber
-router.get('/:id', getsubscriber, (req, res) => {
-  res.send(res.subscriber)
+router.get('/:id',async (req, res) => {
+try {
+    const singleSub = await Subscriber.findById(req.params.id)
+    res.render('index', {singleSub : singleSub})
+} catch (err) {
+    res.status(500).json({ message: err.message })
+ }   
 })
 
 router.post('/', async (req, res) => {
-   console.log(req.body) 
+   
    
     const subscriber = new Subscriber ({
         nom: req.body.nom,  
@@ -41,30 +45,34 @@ router.post('/', async (req, res) => {
     
     try {
         const newsubscriber = await subscriber.save()
-        res.status(201).json(newsubscriber)
+        res.redirect('/subscribers')
     } catch (err) {
         res.status(400).json({message: err.message})
         
     }
 })
-router.patch('/:id', getsubscriber,async (req, res) => {
+router.put('/:id',async (req, res) => {
     if (req.body.nom != null) {
-        res.subscriber.nom = req.body.nom
+        res.singleSub.nom = req.body.nom
     }
     if (req.body.prenom != null) {
-        res.subscriber.prenom = req.body.prenom
+        res.singleSub.prenom = req.body.prenom
+    }
+    if (req.body.dateN != null) {
+        res.singleSub.dateN = req.body.dateN
     }
     try {
-        const updatedSubscriber = await res.subscriber.save()
-        res.json(updatedSubscriber)
+        await Subscriber.findByIdAndUpdate(req.params.id)
+        res.redirect('/subscribers')
    } catch (err) {
            res.status(400).json({message: err.message  })
        }
 })
-router.delete('/:id',getsubscriber,async (req, res) => {
+router.delete('/:id',async (req, res) => {
     try {
-        await res.subscriber.remove()
-        res.json({message: 'deleted subscriber  '})
+        await Subscriber.findByIdAndDelete(req.params.id)
+        ;
+        res.redirect('/subscribers')
     } catch (err) {
         res.status(500).json({message: err.message})
    }

@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const methodOverRide = require('method-override')
 const { send } = require('process')
 mongoose.connect(process.env.DATABASE_URL, { useUnifiedTopology: true, useNewUrlParser: true })
 const db = mongoose.connection
@@ -14,7 +15,7 @@ db.once('open', () => console.log('connected to db'))
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
-
+app.use(methodOverRide('_method'))
 //fs.readFile('../Tableau.html')
 
 
