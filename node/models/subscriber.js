@@ -1,5 +1,10 @@
 const mongoose = require('mongoose')
 
+
+// const createDomPurify = require('dompurify')
+// const {JSDOM} = require('jsdom')
+// const dompurify = createDomPurify(new JSDOM().window)
+
 const subscriberSchema = new mongoose.Schema({
     nom: {
         type: String,

@@ -23,18 +23,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link text-muted" href="index.ejs">Accueil <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="/subscribers">All_subscribers</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark" href="/subscribers">Tableau</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-muted" href="/subscribers/new">Contact</a>
+              <a class="nav-link text-muted" href="/subscribers/new">new_subscriber</a>
             </li>
           </ul>
-          <form class="form-inline mt-2 mt-md-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Votre Promotion" aria-label="Search">
+          <form action="/subscribers" method="GET" class="form-inline mt-2 mt-md-0">
+            <input class="form-control mr-sm-2" type="text" name="search" placeholder="Votre Promotion" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
           </form>
         </div>
@@ -53,6 +50,7 @@
         </tr> 
         </thead>
         <tbody class="tbody">
+          
         <% subscribers.forEach(el =>{ %>
            <tr>
              <td><a href="/subscribers/<%=el._id %>"><%=el._id %></a></td>
@@ -65,9 +63,6 @@
        <% }) %>
         </tbody>
     </table>
-</div>
-   <button class="btn btn-primary">delete</button>
-</div>
 
 <footer class="navbar navbar-expand-sm mx-sm-auto  navbar-dark bg-dark  ">
     <ul class="navbar-nav  mx-auto mr-sm-auto ml-sm-0">
