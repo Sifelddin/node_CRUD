@@ -1,3 +1,5 @@
 # node_CRUD
 
-simple CRUD with nodejs and mongoDB database
+simple CRUD with nodejs, mongoDB database and ejs view engine .
+
+
