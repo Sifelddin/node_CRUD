@@ -1,0 +1,50 @@
+<%- include('layouts/header'); -%>
+
+<div
+  class="container d-flex justify-content-center align-items-center p-2 m-5 bd-highlight"
+  style="height: 100%"
+>
+  <div class="table-responsive-md">
+    <a class="btn btn-primary my-2" href="/subscribers/new">
+      Create Subscriber</a
+    >
+    <p>subscribers list :</p>
+    <table class="table table-bordered table-sm">
+      <thead class="bg-light h5 display-5">
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Prenom</th>
+          <th>DateN</th>
+          <th>SubscribeDate</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody class="tbody">
+        <% subscribers.forEach(el =>{ %>
+        <tr>
+          <td><%=el._id %></td>
+          <td><%= el.nom %></td>
+          <td><%= el.prenom %></td>
+          <td><%= el.dateN %></td>
+          <td><%= el.subscribeDate.toLocaleDateString() %></td>
+          <td>
+            <div class="d-flex justify-content-center align-items-center">
+              <form
+                action="/subscribers/<%= el.id %>?_method=DELETE"
+                method="POST"
+              >
+                <button class="btn btn-danger m-1" type="submit">delete</button>
+              </form>
+              <a class="btn btn-primary" href="/subscribers/<%=el._id %>"
+                >Edit</a
+              >
+            </div>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%- include('layouts/footer'); -%>

@@ -1,29 +1,29 @@
-require('dotenv').config()
-const express = require('express')
-const app = express()
-const mongoose = require('mongoose')
-const methodOverRide = require('method-override')
-const { send } = require('process')
-mongoose.connect(process.env.DATABASE_URL, { useUnifiedTopology: true, useNewUrlParser: true })
-const db = mongoose.connection
+require('dotenv').config();
+const express = require('express');
+const app = express();
+const mongoose = require('mongoose');
+const methodOverRide = require('method-override');
+const { send } = require('process');
+mongoose.connect(process.env.DATABASE_URL, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
+const db = mongoose.connection;
 
-db.on('error', (error) => console.error(error))
-db.once('open', () => console.log('connected to db'))
-
+db.on('error', (error) => console.error(error));
+db.once('open', () => console.log('connected to db'));
 
 //app.use(express.static(path.resolve('../assets')))
-app.set('view engine', 'ejs')
-app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
-app.use(methodOverRide('_method'))
+app.set('view engine', 'ejs');
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(methodOverRide('_method'));
 //fs.readFile('../Tableau.html')
 
+const subscribersRouter = require('./routes/subscribers');
+app.get('/', (req, res) => {
+  res.send('hello');
+});
+app.use('/subscribers', subscribersRouter);
 
-const subscribersRouter = require('./routes/subscribers')
-app.use('/subscribers', subscribersRouter)
-
-  
-
-app.listen(3000, () =>   
-    console.log('server starting ....')
- )
+app.listen(3000, () => console.log('server starting ....'));

@@ -1,0 +1,49 @@
+<%- include('layouts/header'); -%>
+<div class="container">
+  <form action="/subscribers/<%= singleSub.id %>?_method=PUT" method="POST">
+    <legend class="h3">update subscriber</legend>
+    <div class="form-group">
+      <label for="name">Lastname* : </label>
+      <input
+        class="form-control"
+        type="text"
+        id="firstname"
+        name="nom"
+        value="<%= singleSub.nom %>"
+      />
+    </div>
+    <div class="form-group">
+      <label for="name">Firstname* : </label>
+      <input
+        class="form-control"
+        type="text"
+        id="firstname"
+        name="prenom"
+        value="<%= singleSub.prenom %>"
+      />
+    </div>
+    <div class="form-group">
+      <label for="name">Your date of birth* : </label>
+      <input
+        class="form-control"
+        type="date"
+        id="firstname"
+        name="dateN"
+        value="<%= singleSub.dateN %>"
+      />
+    </div>
+
+    <button class="btn btn-warning" type="submit">Update</button>
+  </form>
+  <br />
+  <div class="d-flex">
+    <form
+      action="/subscribers/<%= singleSub.id %>?_method=DELETE"
+      method="POST"
+    >
+      <button class="btn btn-danger m-1" type="submit">delete</button>
+    </form>
+    <a class="btn btn-dark m-1" href="/subscribers">Cancel</a>
+  </div>
+</div>
+<%- include('layouts/footer'); -%>

@@ -1,0 +1,47 @@
+<%- include('layouts/header'); -%>
+<div
+  class="container d-flex justify-content-center align-items-center p-2 m-5 bd-highlight"
+  style="height: 100%"
+>
+  <main class="container">
+    <form action="/subscribers" method="POST">
+      <legend class="h3">create a new subscriber</legend>
+      <div class="form-group">
+        <label for="name">Lastname* : </label>
+        <input
+          class="form-control"
+          type="text"
+          id="firstname"
+          name="nom"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="name">firstname* : </label>
+        <input
+          class="form-control"
+          type="text"
+          id="firstname"
+          name="prenom"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="name">Your date of birth* : </label>
+        <input
+          class="form-control"
+          type="date"
+          id="firstname"
+          name="dateN"
+          required
+        />
+      </div>
+      <br />
+      <button class="btn btn-primary mb-4" type="submit" value="">
+        Submit
+      </button>
+      <a href="/subscribers" class="btn btn-dark mb-4"> Cancel </a>
+    </form>
+  </main>
+</div>
+<%- include('layouts/footer'); -%>
