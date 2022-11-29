@@ -38,7 +38,7 @@ router.post('/', async (req, res) => {
 
   try {
     await subscriber.save();
-    res.redirect('/subscribers');
+    res.redirect('/');
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -51,7 +51,7 @@ router.put('/:id', async (req, res) => {
 
   try {
     singleSub.save();
-    res.redirect('/subscribers');
+    res.redirect('/');
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -59,7 +59,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     await Subscriber.findByIdAndDelete(req.params.id);
-    res.redirect('/subscribers');
+    res.redirect('/');
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

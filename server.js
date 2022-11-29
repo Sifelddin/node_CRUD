@@ -21,9 +21,6 @@ app.use(methodOverRide('_method'));
 //fs.readFile('../Tableau.html')
 
 const subscribersRouter = require('./routes/subscribers');
-app.get('/', (req, res) => {
-  res.send('hello');
-});
-app.use('/subscribers', subscribersRouter);
+app.use('/', subscribersRouter);
 
 app.listen(3000, () => console.log('server starting ....'));

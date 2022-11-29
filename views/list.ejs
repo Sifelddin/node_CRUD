@@ -5,9 +5,7 @@
   style="height: 100%"
 >
   <div class="table-responsive-md">
-    <a class="btn btn-primary my-2" href="/subscribers/new">
-      Create Subscriber</a
-    >
+    <a class="btn btn-primary my-2" href="/new"> Create Subscriber</a>
     <p>subscribers list :</p>
     <table class="table table-bordered table-sm">
       <thead class="bg-light h5 display-5">
@@ -30,15 +28,10 @@
           <td><%= el.subscribeDate.toLocaleDateString() %></td>
           <td>
             <div class="d-flex justify-content-center align-items-center">
-              <form
-                action="/subscribers/<%= el.id %>?_method=DELETE"
-                method="POST"
-              >
+              <form action="/<%= el.id %>?_method=DELETE" method="POST">
                 <button class="btn btn-danger m-1" type="submit">delete</button>
               </form>
-              <a class="btn btn-primary" href="/subscribers/<%=el._id %>"
-                >Edit</a
-              >
+              <a class="btn btn-primary" href="/<%=el._id %>">Edit</a>
             </div>
           </td>
         </tr>

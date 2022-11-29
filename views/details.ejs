@@ -1,6 +1,6 @@
 <%- include('layouts/header'); -%>
 <div class="container">
-  <form action="/subscribers/<%= singleSub.id %>?_method=PUT" method="POST">
+  <form action="/<%= singleSub.id %>?_method=PUT" method="POST">
     <legend class="h3">update subscriber</legend>
     <div class="form-group">
       <label for="name">Lastname* : </label>
@@ -37,13 +37,10 @@
   </form>
   <br />
   <div class="d-flex">
-    <form
-      action="/subscribers/<%= singleSub.id %>?_method=DELETE"
-      method="POST"
-    >
+    <form action="/<%= singleSub.id %>?_method=DELETE" method="POST">
       <button class="btn btn-danger m-1" type="submit">delete</button>
     </form>
-    <a class="btn btn-dark m-1" href="/subscribers">Cancel</a>
+    <a class="btn btn-dark m-1" href="/">Cancel</a>
   </div>
 </div>
 <%- include('layouts/footer'); -%>
